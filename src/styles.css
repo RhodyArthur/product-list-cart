@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 
 /* define colors and fontsize */
 :root {
@@ -30,4 +33,9 @@
     --line-height-1: 1.2;
     --line-height-2: 1.25;
     --line-height-3: 1.5;
+}
+
+body {
+    font-family: 'Red Hat Text', sans-serif;
+    background-color: var(--rose-50);
 }
