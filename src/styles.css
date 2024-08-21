@@ -33,9 +33,17 @@
     --line-height-1: 1.2;
     --line-height-2: 1.25;
     --line-height-3: 1.5;
+
+
+    /* font-weight */
+    --normal: 400;
+    --semi-bold: 600;
+    --bold: 700;
 }
 
 body {
     font-family: 'Red Hat Text', sans-serif;
-    background-color: var(--rose-50gi);
+    background-color: var(--rose-50);
+    letter-spacing: 0px;
+    width: 100%;
 }

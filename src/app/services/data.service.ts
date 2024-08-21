@@ -13,6 +13,6 @@ export class DataService {
 
   // get data from json file
   getProductData() {
-    return this.http.get<Product>(this.dataUrl);
+    return this.http.get<Product[]>(this.dataUrl);
   }
 }
