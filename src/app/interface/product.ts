@@ -5,7 +5,13 @@ export interface Image {
     desktop: string;
 }
 
+export interface Item {
+    category: string;
+    price: number;
+}
+
 export interface Product {
+    addedToCart: boolean;
     image: Image;
     name: string;
     category: string;

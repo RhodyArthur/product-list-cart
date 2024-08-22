@@ -1,30 +1,34 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Product } from '../../interface/product';
+import { Item, Product } from '../../interface/product';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
   productData: Product[] = [];
+  cartItems: Item[] = []
+
   constructor (private dataService: DataService) {}
 
   ngOnInit() {
-    this.fetchedData();
-  }
-
-  fetchedData() {
     this.dataService.getProductData()
     .subscribe(data => {
       this.productData = data;
-      console.log(data)
     })
   }
 
+
   // filtered image based on screen size
+
+  // toggle button on click
+  toggleAddToCartBtn() {
+    return this.productData[0].addedToCart = !this.productData[0].addedToCart;
+  }
   
 }
