@@ -1,20 +1,24 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Item, Product } from '../../interface/product';
+import { Product } from '../../interface/product';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
+import { CartComponent } from "../cart/cart.component";
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CartComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
   productData: Product[] = [];
-  cartItems: Item[] = []
+  cartItems: Product[] = []
 
-  constructor (private dataService: DataService) {}
+  constructor (private dataService: DataService,
+               private cartService: CartService
+  ) {}
 
   ngOnInit() {
     this.dataService.getProductData()
@@ -23,12 +27,29 @@ export class ProductComponent {
     })
   }
 
+  // add items to cart
+  addItemToCart(item: Product) {
+    this.cartService.addItemToCart(item);
+  }
+
+  // increase quantity
+  increment(item: Product) {
+    if(!item.quantity) {
+      item.quantity = 1;
+    }
+    item.quantity++;
+  }
+
+  // decrease quantity
+  decrement(item: Product) {
+    if(item.quantity && item.quantity > 1) {
+      item.quantity--;
+    }
+  }
+
 
   // filtered image based on screen size
 
-  // toggle button on click
-  toggleAddToCartBtn() {
-    return this.productData[0].addedToCart = !this.productData[0].addedToCart;
-  }
+
   
 }

@@ -5,13 +5,10 @@ export interface Image {
     desktop: string;
 }
 
-export interface Item {
-    category: string;
-    price: number;
-}
 
 export interface Product {
     addedToCart: boolean;
+    quantity: number;
     image: Image;
     name: string;
     category: string;
