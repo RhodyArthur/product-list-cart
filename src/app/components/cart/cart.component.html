@@ -1,6 +1,6 @@
 <!-- cart-items -->
 <div class="cart-container">
-    <p class="cart-title">Your Cart ({{cartItems.length}})</p>
+    <p class="cart-title">Your Cart ({{getAllItems()}})</p>
 
     <div class="cart-item-container">
         <!-- display this if there are no items in the list -->
@@ -14,29 +14,32 @@
     }
         @else {
             <div class="cart-item">
-            @for (item of cartItems; track $index) {
-            <div class="added-cart-items">
-                <div class="added-items">
-                    <div class="added-item-info">
-                        <p class="item-name">{{item.category}}</p>
-                        <div class="quantity-container">
-                            <p class="quantity"> {{item.quantity}}</p>
-                            <p class="item-price">{{item.price}}</p>
+                <div class="added-items-container">
+                    @for (item of cartItems; track $index) {
+                        <div class="added-items">
+                            <div class="added-item-info">
+                                <p id="item-name">{{item.name}}</p>
+                                <div class="quantity-container">
+                                    <p id="quantity"> {{item.quantity}}x</p>
+                                    <p id="item-price"> &#64; {{item.price | currency}}</p>
+                                    <p id="item-total-price">{{item.price * item.quantity| currency}}</p>
+                                </div>
+                            </div>
+                            <button type="button" (click)="clearItemFromCart(item)" id="delete-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                width="10" height="10" fill="none" viewBox="0 0 10 10">
+                                <path fill="#260F08" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
+                                </svg>
+                            </button>
                         </div>
-                    </div>
-                    <button type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                         width="10" height="10" fill="none" viewBox="0 0 10 10">
-                         <path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
-                        </svg>
-                    </button>
-                    <div class="separator"></div>
+                        <!-- horizontal line -->
+                        <div class="separator"></div>
+                    }
                 </div>
-            </div>
-            }
+            <div class="separator"></div>
             <div class="order-total">
                 <p>Order Total</p>
-                <p class="total">4.50</p>
+                <p class="total">{{getTotalPrice() | currency}}</p>
             </div>
             <div class="delivery-info">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +49,8 @@
                 </svg>
                 <p>This is a <span>carbon-neutral</span> delivery</p>
             </div>
-            <button type="button" class="confirm-order-btn">Confirm Order</button>
+            <button type="button" class="confirm-order-btn" (click)="displayOrderModal()">
+                Confirm Order</button>
         </div>
     }
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Product } from '../../interface/product';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,7 @@ import { CartComponent } from "../cart/cart.component";
 export class ProductComponent {
   productData: Product[] = [];
   cartItems: Product[] = []
+
 
   constructor (private dataService: DataService,
                private cartService: CartService

@@ -6,7 +6,7 @@
             @for (dessert of productData; track $index) {
             <div class="item-container">
                 <div class="item-image-cart">
-                    <img [src]="dessert.image.desktop" alt={{dessert.name}}>
+                    <img [src]="dessert.image.desktop" alt={{dessert.name}} [class]="{'click-add-btn': dessert.addedToCart}">
                     <div class="btn-container" *ngIf="!dessert.addedToCart; else addedToCart">
                         <button type="button" class="add-to-cart-btn" (click)="addItemToCart(dessert)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20">
