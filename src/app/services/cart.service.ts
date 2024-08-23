@@ -12,6 +12,8 @@ export class CartService {
   private cartItemsSubject = new BehaviorSubject<Product[]>(this.cartItems);
   selectedCartItem$ = this.cartItemsSubject.asObservable();
 
+
+
   constructor(private dataService: DataService) { }
 
   // add item to cart
@@ -51,13 +53,15 @@ export class CartService {
     this.cartItems = this.cartItems.filter(item => item.name !== product.name);
     product.addedToCart = false;
     product.quantity = 0;
-
     this.cartItemsSubject.next(this.cartItems);
+
   }
 
   // clear cart
   clearCart() {
+    this.cartItems.forEach(product => product.addedToCart = false)
     this.cartItems = [];
     this.cartItemsSubject.next(this.cartItems)
+    
   }
 }
