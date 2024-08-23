@@ -38,7 +38,26 @@ export class CartService {
 
   // get total price
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, current) => total + current.price * current.quantity, 0)
+    return this.cartItems.reduce((total, current) => total + current.price * current.quantity, 0);
   }
 
+  // get total items in cart
+  getAllItems(): number {
+    return this.cartItems.reduce((total, current) => total + current.quantity, 0);
+  }
+
+  // remove cart item
+  removeItemFromCart(product: Product) {
+    this.cartItems = this.cartItems.filter(item => item.name !== product.name);
+    product.addedToCart = false;
+    product.quantity = 0;
+
+    this.cartItemsSubject.next(this.cartItems);
+  }
+
+  // clear cart
+  clearCart() {
+    this.cartItems = [];
+    this.cartItemsSubject.next(this.cartItems)
+  }
 }
