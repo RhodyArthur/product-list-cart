@@ -53,9 +53,9 @@ export class CartComponent {
   // handle keydown
   @HostListener('window:keydown.enter', ['$event'])
   handleKeydown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+    event.preventDefault();
+    if (event.key === 'Enter' && this.cartItems.length > 0) {
       this.displayOrderModal();
-      event.preventDefault();
     }
   }
 }
