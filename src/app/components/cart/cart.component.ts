@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../interface/product';
 import { CommonModule } from '@angular/common';
@@ -48,5 +48,14 @@ export class CartComponent {
   // disply confirm modal
   displayOrderModal() {
     this.modalService.show();
+  }
+
+  // handle keydown
+  @HostListener('window:keydown.enter', ['$event'])
+  handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.displayOrderModal();
+      event.preventDefault();
+    }
   }
 }

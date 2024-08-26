@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../interface/product';
 import { CommonModule } from '@angular/common';
@@ -30,4 +30,13 @@ export class ModalComponent implements OnInit {
     this.cartService.clearCart();
     this.modalService.hide()
   }
+
+    // handle keydown
+    @HostListener('window:keydown.enter', ['$event'])
+    handleKeydown(event: KeyboardEvent) {
+      if (event.key === 'Enter') {
+        this.startNewOrder();
+        event.preventDefault();
+      }
+    }
 }

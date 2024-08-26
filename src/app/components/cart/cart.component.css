@@ -160,6 +160,10 @@ HOVER, ACTIVE, FOCUS
 }
 
 
+.confirm-order-btn:focus {
+    background-color: var(--green);
+}
+
 /* 
 =====================
 MEDIA QUERIES

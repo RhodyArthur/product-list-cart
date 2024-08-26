@@ -49,7 +49,7 @@
                 </svg>
                 <p>This is a <span>carbon-neutral</span> delivery</p>
             </div>
-            <button type="button" class="confirm-order-btn" (click)="displayOrderModal()">
+            <button type="submit" class="confirm-order-btn" (click)="displayOrderModal()" (keydown)="handleKeydown($event)" aria-label="Confirm your Order">
                 Confirm Order</button>
         </div>
     }
